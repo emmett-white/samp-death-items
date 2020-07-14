@@ -11,7 +11,6 @@
 
 
 #include <a_samp>
-#tryinclude <YSI_Coding\y_hooks>
 
 
 /// <summary>
@@ -58,9 +57,25 @@ static
 
 
 /// <summary>
+/// Weapon model IDs
+/// </summary>
+static const WeaponModelIDs[] =
+{
+    331, 333, 334, 335,
+    336, 337, 339, 341,
+    321, 323, 325, 342,
+    343, 344, 346, 347,
+    348, 349, 350, 351,
+    352, 353, 355, 356,
+    372, 357, 358, 359,
+    360, 362, 366
+};
+
+
+/// <summary>
 /// Hooks
 /// </summary>
-hook OnPlayerPickUpPickup(playerid, pickupid)
+public OnPlayerPickUpPickup(playerid, pickupid)
 {
 	for (new i = 0; i < sizeof gItemsData; ++i)
 	{
@@ -122,44 +137,5 @@ stock DItem_Create(const playerid, Float: __itemX, Float: __itemY, Float: __item
 
 stock ReturnWeaponPickupID(const playerid)
 {
-	static
-		__pickupid;
-
-
-	switch (GetPlayerWeapon(playerid))
-	{
-		case 1: __pickupid = 331;
-		case 2: __pickupid = 333;
-		case 3: __pickupid = 334;
-		case 4: __pickupid = 335;
-		case 5: __pickupid = 336;
-		case 6: __pickupid = 337;
-		case 8: __pickupid = 339;
-		case 9: __pickupid = 341;
-		case 10: __pickupid = 321;
-		case 12: __pickupid = 323;
-		case 14: __pickupid = 325;
-		case 16: __pickupid = 342;
-		case 17: __pickupid = 343;
-		case 18: __pickupid = 344;
-		case 22: __pickupid = 346;
-		case 23: __pickupid = 347;
-		case 24: __pickupid = 348;
-		case 25: __pickupid = 349;
-		case 26: __pickupid = 350;
-		case 27: __pickupid = 351;
-		case 28: __pickupid = 352;
-		case 29: __pickupid = 353;
-		case 30: __pickupid = 355;
-		case 31: __pickupid = 356;
-		case 32: __pickupid = 372;
-		case 33: __pickupid = 357;
-		case 34: __pickupid = 358;
-		case 35: __pickupid = 359;
-		case 36: __pickupid = 360;
-		case 38: __pickupid = 362;
-		case 42: __pickupid = 366;
-	}
-
-	return __pickupid;
+	return WeaponModelIDs[GetPlayerWeapon(playerid) - 8];
 }
